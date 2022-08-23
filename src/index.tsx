@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { NativeBaseProvider, extendTheme } from "native-base";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
 const theme = extendTheme({
   config: {
@@ -18,7 +19,9 @@ declare module "native-base" {
 ReactDOM.render(
   <React.StrictMode>
     <NativeBaseProvider theme={theme}>
+    <BrowserRouter>
       <App />
+      </BrowserRouter>
     </NativeBaseProvider>
   </React.StrictMode>,
   document.getElementById("root")
