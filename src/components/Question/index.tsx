@@ -8,7 +8,7 @@ const Question = ({ data, count, answers, handleChoice }: IQuestion) => {
 
     return (
         <>
-            <Heading mb={100} color='coolGray.900'>
+            <Heading mb={100}>
                 {data?.results[count].question}
             </Heading>
 

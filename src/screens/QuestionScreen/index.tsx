@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { Data, Points } from '../../types/types';
 import Question from '../../components/Question';
 import axios from 'axios';
-import { Box, Button, Heading, Image, Text, VStack } from 'native-base';
+import { Box, Heading, Text, useColorMode, VStack } from 'native-base';
+import { ToggleDarkMode } from '../Home';
 
 
 const url = `https://opentdb.com/api.php?amount=5&category=18`;
@@ -12,6 +13,8 @@ function QuestionScreen() {
   const [count, setCount] = useState<number>(0)
   const [answers, setAnswers] = useState<string[]>()
   const [points, setPoints] = useState<Points>({ hits: 0, misses: 0 })
+  const { colorMode } = useColorMode();
+
   
   useEffect(() => {
     const fetchSearch = async () => {
@@ -22,9 +25,11 @@ function QuestionScreen() {
   },[])
 
   useEffect(() => {
+    if(count < 5){
     const ans = [...data?.results[count].incorrect_answers || []]
     ans.push(data?.results[count].correct_answer || '')
     setAnswers(ans.sort())
+  }
 
   }, [count, data])
 
@@ -41,19 +46,17 @@ function QuestionScreen() {
     }}
   }
 
-  const handleCount = () => {
-    setCount(count + 1);
-  }
-
   return (
-    <Box overflow="auto">
+    <Box overflow="auto" bg={colorMode === "light" ? "coolGray.50" : "coolGray.900"}>
+      <ToggleDarkMode />
       <Box
       minHeight="100vh"
       justifyContent="center"
       px={4}
+      overflow="auto" bg={colorMode === "light" ? "coolGray.50" : "coolGray.900"}
     >
-      <VStack space={5} alignItems="center">
-        <Heading size="lg" color="coolGray.900">Hits: {points.hits}</Heading>        
+      <VStack space={5} alignItems="center">       
+        {data && count < 5 && (
         <Box alignItems='center'>
           <Question
             data={data as Data}
@@ -61,9 +64,18 @@ function QuestionScreen() {
             answers={answers as string[]}
             handleChoice={handleChoice}
           />
-
-          <Button alignSelf='center' w={200} onPress={handleCount}>Pular</Button>
         </Box>
+        )}
+
+        {count === 5? (
+        <Box textAlign="center">  
+          <Heading>
+            {points.hits === 5? 'CONGRATULATIONS!!!!! New record.' : `Your points: ${points.hits}`}
+          </Heading>
+          <Text>Hits: {points.hits}</Text>
+          <Text>Misses: {points.misses}</Text>
+        </Box>
+        ): null}
       </VStack>
     </Box>
 

@@ -33,16 +33,16 @@ function Home() {
           Click to start your trivia
         </Text>
         <Button href="/question">START</Button>
-        <ToggleDarkMode />
       </VStack>
+        <ToggleDarkMode />
     </Box>
   );
 }
 
-function ToggleDarkMode() {
+export function ToggleDarkMode() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <HStack space={2}>
+    <HStack space={2} alignSelf='center' marginY={0} marginTop={10}>
       <Text>Dark</Text>
       <Switch
         isChecked={colorMode === "light"}
