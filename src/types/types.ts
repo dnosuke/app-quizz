@@ -1,23 +1,23 @@
 export interface Data {
   results: [
     {
-      type: string,
-      category: string,
-      question: string,
-      correct_answer: string,
-      incorrect_answers: Array<string>,
-    }
-  ]
+      type: string;
+      category: string;
+      question: string;
+      correct_answer: string;
+      incorrect_answers: Array<string>;
+    },
+  ];
 }
 
 export interface IQuestion {
-  data: Data,
-  count: number,
-  answers: string[],
-  handleChoice: (item: string) => React.MouseEventHandler<HTMLAnchorElement>,
+  data: Data;
+  count: number;
+  answers: string[];
+  handleChoice: (item: string) => void;
 }
 
 export type Points = {
-  hits: number,
-  misses: number
-}
+  hits: number;
+  misses: number;
+};
