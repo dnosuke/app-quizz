@@ -17,7 +17,7 @@ const Question = ({ data, count, answers, handleChoice }: IQuestion) => {
 
                     return ( 
                         
-                        <Box>
+                        <Box key={index}>
                                    <Pressable 
                                    _hover={{ bg: "cyan.700" }} 
                                         w={"2xl"}
