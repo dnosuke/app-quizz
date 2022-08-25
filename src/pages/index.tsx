@@ -22,20 +22,18 @@ export default function App() {
       _light={{ bg: "blueGray.50" }}
     >
       <Box
-      _dark={{ bg: "blueGray.900" }}
-      _light={{ bg: "blueGray.50" }}
-      minHeight="100vh"
-      justifyContent="center"
-      px={4}
-    >
-      <VStack space={5} alignItems="center">
-        <Heading size="lg">Welcome to QuizApp</Heading>
-        <Text>
-          Click to start your trivia
-        </Text>
-        <Button href='/questions'>START</Button>
-      </VStack>
-    </Box>
+        _dark={{ bg: "blueGray.900" }}
+        _light={{ bg: "blueGray.50" }}
+        minHeight="100vh"
+        justifyContent="center"
+        px={4}
+      >
+        <VStack space={5} alignItems="center">
+          <Heading size="lg">Welcome to QuizApp</Heading>
+          <Text>Click to start your trivia</Text>
+          <Button href="/questions">START</Button>
+        </VStack>
+      </Box>
       <ColorModeSwitch />
     </Center>
   );
