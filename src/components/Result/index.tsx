@@ -10,8 +10,8 @@ export default function Result(points: Points) {
           ? 'CONGRATULATIONS!!!!! New record.'
           : `Your points: ${points.hits}`}
       </Heading>
-      <Text>✅Right Questions: {points.hits}</Text>
-      <Text>❌Wrong Questions: {points.misses}</Text>
+      <Text>✅ Right Questions: {points.hits}</Text>
+      <Text>❌ Wrong Questions: {points.misses}</Text>
       <Button href="/questions" mt={4}>RESTART</Button>
     </Box>
   );

@@ -1,15 +1,15 @@
 import { Box, Heading } from 'native-base';
 import React from 'react';
+//@ts-ignore
+import * as C from 'svg-loaders-react';
 
 const Loader = () => {
   return (
-    <Box alignItems='center'>
-      <Heading size="xl">
-          Just one second 
+    <Box alignItems="center">
+      <Heading size="xl" mb={4}>
+        Loading
       </Heading>
-      <Heading size="xl">
-          We are fetching that content for you.
-      </Heading>
+      <C.ThreeDots fill="#3dd1eb" />
     </Box>
   );
 };

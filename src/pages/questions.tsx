@@ -39,13 +39,16 @@ export default function QuestionScreen() {
   }, [count, data]);
 
   const handleChoice = (choice: string) => {
+    let newpoints: Points;
     if (choice === data?.results[count].correct_answer) {
       console.log('Parabens');
-      let newpoints = { ...points, hits: points.hits + 1 };
+      newpoints = { ...points, hits: points.hits + 1 };
       setPoints(newpoints);
       setCount(count + 1);
     } else {
       console.log('errouu');
+      newpoints = { ...points, misses: points.misses + 1 };
+      setPoints(newpoints);
       setCount(count + 1);
     }  
   };
@@ -55,24 +58,24 @@ export default function QuestionScreen() {
       flex={1}
       _dark={{ bg: 'blueGray.900' }}
       _light={{ bg: 'blueGray.50' }}
-    >
+      >
       <Box
         minHeight="100vh"
         justifyContent="center"
         px={4}
         overflow="auto"
         bg={colorMode === 'light' ? 'coolGray.50' : 'coolGray.900'}
-      >
+        >
         <VStack space={5} alignItems="center">
           {loading && <Loader />}
           {!loading && data && ( count < 5 ) && (
-            <Box alignItems="center">
+            <Box alignItems={'center'}>
               <Quiz
                 data={data as Data}
                 count={count}
                 answers={answers as string[]}
                 handleChoice={handleChoice}
-              />
+                />
             </Box>
           )}
 

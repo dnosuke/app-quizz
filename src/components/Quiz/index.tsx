@@ -1,9 +1,13 @@
 import React from 'react';
-import { Box, Heading, Pressable, Text } from 'native-base';
+import { Box, Heading, Pressable, Text, useMediaQuery } from 'native-base';
 import { IQuestion } from '../../types/types';
 import he from 'he';
 
 const Quiz = ({ data, count, answers, handleChoice }: IQuestion) => {
+  const [isSmallScreen] = useMediaQuery({
+    minHeight: 280,
+    maxHeight: 480,
+  });
   return (
     <>
       <Heading mb={100}>{he.decode(data?.results[count].question)}</Heading>
@@ -14,7 +18,7 @@ const Quiz = ({ data, count, answers, handleChoice }: IQuestion) => {
             <Box key={index}>
               <Pressable
                 _hover={{ bg: 'cyan.700' }}
-                w={'2xl'}
+                w={isSmallScreen ? '2xl' : 'xs'}
                 h={10}
                 bg="cyan.400"
                 flexDir="row"
